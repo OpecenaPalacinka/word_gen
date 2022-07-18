@@ -1,0 +1,1 @@
+SELECT `fav_beer` FROM `responses` GROUP BY `fav_beer` ORDER BY COUNT(`fav_beer`) DESC LIMIT 3;

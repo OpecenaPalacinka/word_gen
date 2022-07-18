@@ -1,0 +1,5 @@
+0 => "Pivo vůbec nepiju"
+1 => "Příležitostně"
+2 => "Alespoň 1x za měsíc"
+3 => "Alespoň 1x za týden"
+4 => "Častěji než 1x za týden"

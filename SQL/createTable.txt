@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS `responses` (
+  `index` int(11) NOT NULL AUTO_INCREMENT,
+  `frequency` int(11) DEFAULT NULL,
+  `fav_beer` varchar(60) COLLATE utf16_czech_ci DEFAULT NULL,
+  `email` varchar(60) COLLATE utf16_czech_ci DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`index`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf16 COLLATE=utf16_czech_ci;

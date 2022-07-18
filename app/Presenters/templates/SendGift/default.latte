@@ -1,0 +1,12 @@
+<body style="display: flex;align-items: center;justify-content: center;text-align: center;flex-direction: column;">
+<h2 style="font-size: 2em">Děkujeme za vyplnění dotazníku.<br></h2>
+{control sendGiftForm}
+</body>
+
+<script>
+
+    var request = new XMLHttpRequest();
+    request.open("POST","",true)
+    request.send(document.getElementById('frm-sendGiftForm-email').innerHTML);
+
+</script>
