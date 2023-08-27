@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
@@ -10,10 +10,9 @@
 <body>
 	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
-	{include content}
-
 	{block scripts}
-	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+		<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	{/block}
 </body>
 </html>
