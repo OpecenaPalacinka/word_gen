@@ -50,8 +50,6 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
     public function formSucceeded(Nette\Forms\Form $form, Nette\Utils\ArrayHash $data): void
     {
         $this->generatorService->generateWord($data['file']->getContents());
-        //$row = $this->database->table('responses')->insert([]);
-        //$this->redirect('Freq:default', $row->getPrimary());
     }
 
 }
