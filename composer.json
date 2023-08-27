@@ -21,8 +21,10 @@
 		"latte/latte": "^2.9",
 		"tracy/tracy": "^2.8",
       "ext-dom": "*",
-		"phpoffice/phpword": "^1.1"
-    },
+		"phpoffice/phpword": "^1.1",
+		"ext-mbstring": "*",
+		"ext-iconv": "*"
+	},
 	"require-dev": {
 		"nette/tester": "^2.3",
 		"symfony/thanks": "^1"

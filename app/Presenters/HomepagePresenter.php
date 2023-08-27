@@ -48,7 +48,15 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
      * @throws Exception
      */
     public function formSucceeded(Nette\Forms\Form $form, Nette\Utils\ArrayHash $data): void
-    {
+  {
+        $text = substr($data['file']->getContents(),0, 2500);
+        $hex = bin2hex($text);
+        $textik = pack("H*", $hex);
+        $encodng = mb_detect_encoding($textik);
+        bdump($encodng);
+        $arr = mb_split('\n', $textik);
+        bdump($textik);
+
         $this->generatorService->generateWord($data['file']->getContents());
     }
 

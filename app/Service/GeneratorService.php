@@ -32,6 +32,27 @@ class GeneratorService
         $section = $wordFile->addSection();
 
         $section->addTitle('A Průvodní zpráva');
+        $wordFile = $this->createA1($wordFile, $fileContent);
+        $wordFile = $this->createA2($wordFile, $fileContent);
+        $wordFile = $this->createA3($wordFile, $fileContent);
+        $wordFile = $this->createA4($wordFile, $fileContent);
+        $wordFile = $this->createA5($wordFile, $fileContent);
+
+        $section = $wordFile->addSection();
+        $section->addTitle('B Souhrnná technická zpráva');
+        $wordFile = $this->createB1($wordFile, $fileContent);
+        $wordFile = $this->createB2($wordFile, $fileContent);
+
+        $fileSaver = IOFactory::createWriter($wordFile, 'Word2007');
+        $filename = 'helloWorld.docx';
+        $fileSaver->save($filename);
+
+        $this->downloadFile($filename);
+    }
+
+    public function createA1(PhpWord $wordFile, string $fileContent): PhpWord
+    {
+        $section = $wordFile->getSection(0);
         $section->addTitle('A.1 Identifikační údaje', 2);
         $section->addTitle('A.1.1 Údaje o stavbě', 3);
         $section->addText(
@@ -59,6 +80,12 @@ class GeneratorService
             . '(Vince Lombardi)',
             $fontStyleName
         );
+        return $wordFile;
+    }
+
+    public function createA2(PhpWord $wordFile, string $fileContent): PhpWord
+    {
+        $section = $wordFile->getSection(0);
         $section->addTitle('A.2 Seznam vstupních podkladů', 2);
 
         // Adding Text element with font customized using explicitly created font style object...
@@ -68,54 +95,46 @@ class GeneratorService
         $fontStyle->setSize(13);
         $myTextElement = $section->addText('"Believe you can and you\'re halfway there." (Theodor Roosevelt)');
         $myTextElement->setFontStyle($fontStyle);
-
-
-        $fileSaver = IOFactory::createWriter($wordFile, 'Word2007');
-        $filename = 'helloWorld.docx';
-        $fileSaver->save($filename);
-
-        $this->downloadFile($filename);
-    }
-
-    public function createA1(PhpWord $wordFile, string $fileContent): PhpWord
-    {
-
-        return $wordFile;
-    }
-
-    public function createA2(PhpWord $wordFile, string $fileContent): PhpWord
-    {
-
         return $wordFile;
     }
 
     public function createA3(PhpWord $wordFile, string $fileContent): PhpWord
     {
-
+        $section = $wordFile->getSection(0);
+        $section->addTitle('A.3 Údaje o území', 2);
+        $section->addText('čus');
         return $wordFile;
     }
 
     public function createA4(PhpWord $wordFile, string $fileContent): PhpWord
     {
-
+        $section = $wordFile->getSection(0);
+        $section->addTitle('A.4 Údaje o stavbě', 2);
+        $section->addText('ahoj');
         return $wordFile;
     }
 
     public function createA5(PhpWord $wordFile, string $fileContent): PhpWord
     {
-
+        $section = $wordFile->getSection(0);
+        $section->addTitle('A.5 Členění stavby na objekty a technická a technologická zařízení', 2);
+        $section->addText('Stavba se nečlení na žádné objekty a zařízení.');
         return $wordFile;
     }
 
     public function createB1(PhpWord $wordFile, string $fileContent): PhpWord
     {
-
+        $section = $wordFile->getSection(1);
+        $section->addTitle('B.1 Popis územní stavby', 2);
+        $section->addText('Stavba se nečlení na žádné objekty a zařízení.');
         return $wordFile;
     }
 
     public function createB2(PhpWord $wordFile, string $fileContent): PhpWord
     {
-
+        $section = $wordFile->getSection(1);
+        $section->addTitle('B.2 Celkový popis stavby', 2);
+        $section->addText('Stavba se nečlení na žádné objekty a zařízení.');
         return $wordFile;
     }
 
