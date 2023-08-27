@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace App\Presenters;
 
 use App\Service\GeneratorService;
+use JetBrains\PhpStorm\NoReturn;
 use Nette;
+use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
+use Nette\Utils\ArrayHash;
+use PhpOffice\PhpWord\Exception\Exception;
 
 final class HomepagePresenter extends Nette\Application\UI\Presenter
 {
@@ -21,25 +25,31 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
         $form = new Form;
         $form->addUpload('file', 'Please upload file')
             ->setHtmlAttribute('id', 'fileControl');
-        $form->addSubmit('send', 'Upload')
-            ->setValidationScope([]);
+        $form->addSubmit('send', 'Upload');
         $form->onSuccess[] = [$this, 'formSucceeded'];
         $form->onError[] = [$this, 'formError'];
         return $form;
     }
 
-    public function formError(Nette\Forms\Form $form): void
+    /**
+     * @param Nette\Forms\Form $form
+     * @return void
+     * @throws AbortException
+     */
+    #[NoReturn] public function formError(Nette\Forms\Form $form): void
     {
-        bdump($form);
-        $form->addError("jsjoso");
+        $this->redirect('this');
     }
 
     /**
+     * @param Nette\Forms\Form $form
+     * @param ArrayHash $data
+     * @return void
+     * @throws Exception
      */
-    public function formSucceeded(Nette\Forms\Form $form, $data): void
+    public function formSucceeded(Nette\Forms\Form $form, Nette\Utils\ArrayHash $data): void
     {
-        bdump($data);
-        echo $this->generatorService->generateWord("kkk");
+        $this->generatorService->generateWord($data['file']->getContents());
         //$row = $this->database->table('responses')->insert([]);
         //$this->redirect('Freq:default', $row->getPrimary());
     }
